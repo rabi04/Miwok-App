@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,9 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
-
-    public WordAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Word> wordArrayList) {
+    private long color;
+    public WordAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Word> wordArrayList,long color) {
         super(context, 0, wordArrayList);
+        this.color = color;
     }
 
     @NonNull
@@ -32,6 +35,14 @@ public class WordAdapter extends ArrayAdapter<Word> {
         miwokWord.setText(word.getmMiwokTranslation());
         TextView defaultWord = listItemView.findViewById(R.id.defaultWord);
         defaultWord.setText(word.getDefaultTranslation());
+        LinearLayout wordLinearLayout = listItemView.findViewById(R.id.wordLinearLayout);
+        wordLinearLayout.setBackgroundColor((int)color);
+        ImageView imageView = listItemView.findViewById(R.id.image);
+        imageView.setVisibility(View.GONE);
+        if(word.isPhrasesActivity() == false){
+            imageView.setVisibility(View.VISIBLE);
+            imageView.setImageResource(word.getImageResourceId());
+        }
         return listItemView;
     }
 }

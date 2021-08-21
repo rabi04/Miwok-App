@@ -22,16 +22,22 @@ public class NumbersActivity extends AppCompatActivity {
         //         of xml resource file . will display the value in log for checking whether it is working fine or not.*/
         //        // new word is the constructor of the word class which I have created.
         ArrayList<Word> itemList = new ArrayList<Word>();
-        itemList.add(new Word("one","luttie"));
-        itemList.add(new Word("two","du"));
-        itemList.add(new Word("three","tin"));
-        itemList.add(new Word("four","char"));
+        itemList.add(new Word("one","luttie",R.drawable.number_one));
+        itemList.add(new Word("two","du",R.drawable.number_two));
+        itemList.add(new Word("three","tin",R.drawable.number_three));
+        itemList.add(new Word("four","char",R.drawable.number_four));
+        itemList.add(new Word("five","char",R.drawable.number_five));
+        itemList.add(new Word("six","char",R.drawable.number_six));
+        itemList.add(new Word("seven","char",R.drawable.number_seven));
+        itemList.add(new Word("eight","char",R.drawable.number_eight));
+        itemList.add(new Word("nine","char",R.drawable.number_nine));
+        itemList.add(new Word("ten","char",R.drawable.number_ten));
         //logging the translation in log.
         for(int i = 0; i < itemList.size(); i++){
             Word word = itemList.get(i);
             Log.i("Number Activity ",word.getDefaultTranslation()+" "+word.getmMiwokTranslation());
         }
-        WordAdapter language = new WordAdapter(this,R.layout.list_item,itemList);
+        WordAdapter language = new WordAdapter(this,R.layout.list_item,itemList, R.color.category_numbers);
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(language);
 

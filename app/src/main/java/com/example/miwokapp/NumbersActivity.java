@@ -2,12 +2,16 @@ package com.example.miwokapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.icu.text.Transliterator;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,8 +42,16 @@ public class NumbersActivity extends AppCompatActivity {
             Log.i("Number Activity ",word.getDefaultTranslation()+" "+word.getmMiwokTranslation());
         }
         WordAdapter language = new WordAdapter(this,R.layout.list_item,itemList, R.color.category_numbers);
-        ListView listView = findViewById(R.id.list);
+        ListView listView = findViewById(R.id.numberListView);
         listView.setAdapter(language);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Word word = (Word) listView.getItemAtPosition(position);
+                Toast toast = Toast.makeText(getApplicationContext(),word.getDefaultTranslation(),Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
     }
 }

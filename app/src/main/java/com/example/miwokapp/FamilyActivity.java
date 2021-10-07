@@ -3,7 +3,10 @@ package com.example.miwokapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,16 @@ public class FamilyActivity extends AppCompatActivity {
         familyMember.add(new Word("young sister","grandfather",R.drawable.family_younger_sister));
         familyMember.add(new Word("son","grandfather",R.drawable.family_son));
         WordAdapter family = new WordAdapter(this,R.layout.list_item,familyMember , R.color.category_family);
-        ListView listView = findViewById(R.id.list);
+        ListView listView = findViewById(R.id.familyListView);
         listView.setAdapter(family);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Word word = (Word) listView.getItemAtPosition(position);
+                Toast toast = Toast.makeText(getApplicationContext(),word.getDefaultTranslation(),Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
     }
 }

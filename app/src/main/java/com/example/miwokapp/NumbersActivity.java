@@ -2,7 +2,9 @@ package com.example.miwokapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Resources;
 import android.icu.text.Transliterator;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,6 +51,11 @@ public class NumbersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Word word = (Word) listView.getItemAtPosition(position);
+                Resources res = getResources();
+                String numberAudioFile = "number_"+word.getDefaultTranslation();
+                int numberAudioFileId = res.getIdentifier(numberAudioFile,"raw",getPackageName());
+                MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(),numberAudioFileId);
+                mediaPlayer.start();
                 Toast toast = Toast.makeText(getApplicationContext(),word.getDefaultTranslation(),Toast.LENGTH_SHORT);
                 toast.show();
             }
